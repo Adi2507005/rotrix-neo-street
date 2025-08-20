@@ -81,7 +81,7 @@ const Products = () => {
             <div className="w-px h-12 bg-accent/30"></div>
             <div className="text-center">
               <div className="text-3xl font-orbitron font-bold text-primary">24hr</div>
-              <div className="text-foreground/70">Fast Delivery</div>
+              <div className="text-foreground/70">Delivery</div>
             </div>
           </div>
         </div>
