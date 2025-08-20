@@ -26,7 +26,7 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
@@ -39,21 +39,61 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
       return;
     }
 
-    // Show success message
-    toast({
-      title: "Order Placed Successfully! 🎉",
-      description: `Your ${product?.name} order has been confirmed. We'll contact you soon!`,
-    });
+    try {
+      // Send order data to webhook
+      const orderData = {
+        customer: {
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+        },
+        product: {
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          selectedColor: product.selectedColor,
+          category: product.category,
+        },
+        order: {
+          size: formData.size,
+          paymentMethod: formData.paymentMethod,
+          timestamp: new Date().toISOString(),
+          orderId: `ROT-${Date.now()}`,
+        }
+      };
 
-    // Reset form and close modal
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      size: "",
-      paymentMethod: "",
-    });
-    onClose();
+      await fetch('https://adityamishra25.app.n8n.cloud/webhook-test/13f537e7-e5e8-456e-bd0f-762b98032dd4', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'no-cors',
+        body: JSON.stringify(orderData),
+      });
+
+      // Show success message
+      toast({
+        title: "Order Placed Successfully! 🎉",
+        description: `Your ${product?.name} order has been confirmed. We'll contact you soon!`,
+      });
+
+      // Reset form and close modal
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        size: "",
+        paymentMethod: "",
+      });
+      onClose();
+    } catch (error) {
+      console.error('Error sending order to webhook:', error);
+      toast({
+        title: "Order Processing Error",
+        description: "There was an issue processing your order. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (!product) return null;
