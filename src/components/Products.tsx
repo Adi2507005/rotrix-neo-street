@@ -71,22 +71,17 @@ const Products = () => {
           </p>
         </div>
 
-        {/* Product Categories */}
-        <div className="mb-12">
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+        {/* Customer Stats */}
+        <div className="mb-12 text-center">
+          <div className="inline-flex items-center gap-8 card-electric p-6">
             <div className="text-center">
-              <h3 className="text-2xl font-orbitron font-semibold text-accent mb-2">
-                T-Shirts
-              </h3>
-              <p className="text-foreground/70">Bold anime graphics on premium cotton</p>
-              <div className="text-3xl font-orbitron font-bold text-primary mt-2">₹799</div>
+              <div className="text-3xl font-orbitron font-bold text-primary">500+</div>
+              <div className="text-foreground/70">Happy Customers</div>
             </div>
+            <div className="w-px h-12 bg-accent/30"></div>
             <div className="text-center">
-              <h3 className="text-2xl font-orbitron font-semibold text-accent mb-2">
-                Pants
-              </h3>
-              <p className="text-foreground/70">Comfortable joggers with streetwear design</p>
-              <div className="text-3xl font-orbitron font-bold text-primary mt-2">₹1099</div>
+              <div className="text-3xl font-orbitron font-bold text-primary">24hr</div>
+              <div className="text-foreground/70">Fast Delivery</div>
             </div>
           </div>
         </div>
@@ -102,24 +97,6 @@ const Products = () => {
           ))}
         </div>
 
-        {/* Size Guide */}
-        <div className="mt-16 text-center">
-          <div className="card-electric inline-block p-6">
-            <h4 className="text-lg font-orbitron font-semibold mb-4 text-primary">
-              Available Sizes
-            </h4>
-            <div className="flex flex-wrap justify-center gap-3">
-              {["XS", "S", "M", "L", "XL", "XXL"].map((size) => (
-                <span 
-                  key={size}
-                  className="px-4 py-2 border border-accent/30 rounded-lg text-accent hover:border-accent transition-colors duration-200"
-                >
-                  {size}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Order Modal */}
