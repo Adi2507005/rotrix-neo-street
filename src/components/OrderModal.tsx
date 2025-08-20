@@ -18,6 +18,9 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
     name: "",
     phone: "",
     email: "",
+    address: "",
+    city: "",
+    zipcode: "",
     size: "",
     paymentMethod: "",
   });
@@ -30,7 +33,7 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
     e.preventDefault();
     
     // Validation
-    if (!formData.name || !formData.phone || !formData.email || !formData.size || !formData.paymentMethod) {
+    if (!formData.name || !formData.phone || !formData.email || !formData.address || !formData.city || !formData.zipcode || !formData.size || !formData.paymentMethod) {
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields.",
@@ -46,6 +49,11 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
           name: formData.name,
           phone: formData.phone,
           email: formData.email,
+        },
+        delivery: {
+          address: formData.address,
+          city: formData.city,
+          zipcode: formData.zipcode,
         },
         product: {
           id: product.id,
@@ -82,6 +90,9 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
         name: "",
         phone: "",
         email: "",
+        address: "",
+        city: "",
+        zipcode: "",
         size: "",
         paymentMethod: "",
       });
@@ -162,6 +173,43 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
                 placeholder="your.email@example.com"
                 required
               />
+            </div>
+
+            <div>
+              <Label htmlFor="address" className="text-foreground">Delivery Address *</Label>
+              <Input
+                id="address"
+                value={formData.address}
+                onChange={(e) => handleInputChange("address", e.target.value)}
+                className="bg-input border-border text-foreground"
+                placeholder="Enter your full address"
+                required
+              />
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="city" className="text-foreground">City *</Label>
+                <Input
+                  id="city"
+                  value={formData.city}
+                  onChange={(e) => handleInputChange("city", e.target.value)}
+                  className="bg-input border-border text-foreground"
+                  placeholder="City"
+                  required
+                />
+              </div>
+              <div>
+                <Label htmlFor="zipcode" className="text-foreground">Zipcode *</Label>
+                <Input
+                  id="zipcode"
+                  value={formData.zipcode}
+                  onChange={(e) => handleInputChange("zipcode", e.target.value)}
+                  className="bg-input border-border text-foreground"
+                  placeholder="000000"
+                  required
+                />
+              </div>
             </div>
 
             <div>
