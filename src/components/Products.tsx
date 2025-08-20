@@ -61,11 +61,11 @@ const Products = () => {
     <section id="products" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-6 text-neon">
+          <h2 className="text-4xl md:text-5xl font-orbitron font-bold mb-6 text-neon-yellow">
             Anime Collection
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mb-8"></div>
-          <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-neon-purple to-electric-pink mx-auto mb-8"></div>
+          <p className="text-lg text-foreground/80 max-w-2xl mx-auto font-poppins">
             Discover our exclusive range of anime-inspired streetwear. Each piece is designed 
             to make you stand out with bold graphics and premium quality.
           </p>
@@ -73,15 +73,15 @@ const Products = () => {
 
         {/* Customer Stats */}
         <div className="mb-12 text-center">
-          <div className="inline-flex items-center gap-8 card-electric p-6">
+          <div className="inline-flex items-center gap-8 card-cyberpunk p-6">
             <div className="text-center">
-              <div className="text-3xl font-orbitron font-bold text-primary">500+</div>
-              <div className="text-foreground/70">Happy Customers</div>
+              <div className="text-3xl font-orbitron font-bold text-neon-purple">500+</div>
+              <div className="text-foreground/70 font-poppins">Happy Customers</div>
             </div>
-            <div className="w-px h-12 bg-accent/30"></div>
+            <div className="w-px h-12 bg-neon-yellow/30"></div>
             <div className="text-center">
-              <div className="text-3xl font-orbitron font-bold text-primary">24hr</div>
-              <div className="text-foreground/70">Delivery</div>
+              <div className="text-3xl font-orbitron font-bold text-neon-purple">24hr</div>
+              <div className="text-foreground/70 font-poppins">Delivery</div>
             </div>
           </div>
         </div>

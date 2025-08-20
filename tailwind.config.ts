@@ -18,10 +18,11 @@ export default {
 			}
 		},
 		extend: {
-			fontFamily: {
-				'orbitron': ['Orbitron', 'monospace'],
-				'inter': ['Inter', 'sans-serif'],
-			},
+    fontFamily: {
+      orbitron: ['Orbitron', 'sans-serif'],
+      roboto: ['Roboto', 'sans-serif'],
+      poppins: ['Poppins', 'sans-serif'],
+    },
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -56,20 +57,22 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				},
-				'neon-glow': 'hsl(var(--neon-glow))',
-				'electric-blue': 'hsl(var(--electric-blue))',
-				'deep-purple': 'hsl(var(--deep-purple))',
-				'anime-red': 'hsl(var(--anime-red))'
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+        // Custom cyberpunk colors
+        "neon-purple": "hsl(var(--neon-purple))",
+        "neon-yellow": "hsl(var(--neon-yellow))",
+        "cyber-blue": "hsl(var(--cyber-blue))",
+        "electric-pink": "hsl(var(--electric-pink))",
+        "deep-black": "hsl(var(--deep-black))",
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -94,11 +97,15 @@ export default {
 					}
 				}
 			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
-				'spin-slow': 'spin 6s linear infinite'
-			}
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+        "spin-slow": "spin 3s linear infinite",
+        "glitch-cyberpunk": "glitch-cyberpunk 3s infinite",
+        "pulse-cyberpunk": "pulse-cyberpunk 2s infinite",
+        "neon-line-flow": "neon-line-flow 3s linear infinite",
+        "float": "float 3s ease-in-out infinite",
+      },
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

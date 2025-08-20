@@ -15,7 +15,6 @@ interface ProductCardProps {
 const ProductCard = ({ id, name, price, image, colors, category, onOrder }: ProductCardProps) => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [isLiked, setIsLiked] = useState(false);
-  const rating = 4.5; // Mock rating
 
   const handleOrder = () => {
     onOrder({
@@ -28,104 +27,91 @@ const ProductCard = ({ id, name, price, image, colors, category, onOrder }: Prod
     });
   };
 
+  const getColorClass = (color: string) => {
+    const colorMap: { [key: string]: string } = {
+      'Black': 'bg-black',
+      'Navy': 'bg-blue-900',
+      'Dark Purple': 'bg-purple-900',
+      'Red': 'bg-red-600',
+      'Electric Blue': 'bg-cyan-400',
+      'Dark Grey': 'bg-gray-700',
+      'Midnight Blue': 'bg-blue-950',
+    };
+    return colorMap[color] || 'bg-gray-500';
+  };
+
   return (
-    <div className="card-electric group cursor-pointer">
-      <div className="relative overflow-hidden rounded-lg mb-4">
+    <div className="card-cyberpunk group">
+      {/* Product Image */}
+      <div className="relative mb-4 overflow-hidden rounded-lg">
         <img 
           src={image} 
           alt={name}
-          className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+          className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         
         {/* Category Badge */}
-        <div className="absolute top-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold uppercase tracking-wider">
-          {category === "t-shirt" ? "T-Shirt" : "Pants"}
+        <div className="absolute top-3 left-3 bg-neon-purple text-deep-black px-3 py-1 rounded-full text-xs font-bold uppercase font-orbitron">
+          {category}
         </div>
         
         {/* Like Button */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            setIsLiked(!isLiked);
-          }}
-          className="absolute top-4 right-4 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-accent/30 hover:bg-accent/20 transition-colors duration-200"
+        <button 
+          onClick={() => setIsLiked(!isLiked)}
+          className="absolute top-3 right-3 p-2 rounded-full bg-background/80 hover:bg-neon-yellow/20 transition-all duration-300 border border-neon-yellow/30"
         >
           <Heart 
-            className={`w-5 h-5 transition-colors duration-200 ${
-              isLiked ? 'fill-primary text-primary' : 'text-foreground/70'
+            className={`w-5 h-5 transition-all duration-300 ${
+              isLiked ? 'fill-electric-pink text-electric-pink animate-pulse' : 'text-foreground hover:text-electric-pink'
             }`} 
           />
         </button>
       </div>
 
+      {/* Product Info */}
       <div className="space-y-4">
-        <div className="flex items-start justify-between">
-          <h3 className="text-xl font-orbitron font-semibold text-foreground group-hover:text-accent transition-colors duration-300">
-            {name}
-          </h3>
-        </div>
-        
         {/* Rating */}
-        <div className="flex items-center gap-2">
-          <div className="flex items-center">
-            {[...Array(5)].map((_, i) => (
-              <Star
-                key={i}
-                className={`w-4 h-4 ${
-                  i < Math.floor(rating)
-                    ? 'fill-accent text-accent'
-                    : i === Math.floor(rating) && rating % 1 !== 0
-                    ? 'fill-accent/50 text-accent'
-                    : 'text-foreground/30'
-                }`}
+        <div className="flex items-center gap-1">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="w-4 h-4 fill-neon-yellow text-neon-yellow" />
+          ))}
+          <span className="text-sm text-foreground/70 ml-2 font-poppins">(4.8)</span>
+        </div>
+
+        {/* Name and Price */}
+        <div>
+          <h3 className="text-lg font-orbitron font-bold text-neon-yellow mb-2">{name}</h3>
+          <p className="text-2xl font-bold text-neon-purple">₹{price}</p>
+          <p className="text-sm text-foreground/70 mt-1 font-poppins">Premium anime streetwear with bold graphics</p>
+        </div>
+
+        {/* Color Options */}
+        <div>
+          <p className="text-sm font-medium text-foreground/80 mb-2 font-poppins">Colors:</p>
+          <div className="flex gap-2">
+            {colors.map((color, index) => (
+              <button
+                key={color}
+                onClick={() => setSelectedColor(color)}
+                className={`w-8 h-8 rounded-full border-2 transition-all duration-300 ${
+                  selectedColor === color 
+                    ? 'border-neon-yellow scale-110 shadow-neon-yellow' 
+                    : 'border-foreground/30 hover:border-neon-yellow hover:scale-105'
+                } ${getColorClass(color)}`}
+                title={color}
               />
             ))}
           </div>
-          <span className="text-sm text-foreground/70">({rating})</span>
+          <p className="text-xs text-cyber-blue mt-1 font-poppins">Selected: {selectedColor}</p>
         </div>
 
-        {/* Color Selection */}
-        <div className="flex flex-wrap gap-2">
-          {colors.map((color) => (
-            <button
-              key={color}
-              onClick={() => setSelectedColor(color)}
-              className={`px-3 py-1 rounded-full text-sm border transition-all duration-200 ${
-                selectedColor === color
-                  ? 'border-primary bg-primary/20 text-primary'
-                  : 'border-foreground/30 text-foreground/70 hover:border-accent hover:text-accent'
-              }`}
-            >
-              {color}
-            </button>
-          ))}
-        </div>
-
-        {/* Price and Description */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between">
-            <div className="text-2xl font-orbitron font-bold text-primary">
-              ₹{price}
-            </div>
-            <div className="text-sm text-foreground/60">
-              Free Delivery
-            </div>
-          </div>
-          <p className="text-sm text-foreground/70">
-            {category === "t-shirt" 
-              ? "Bold anime graphics on premium cotton" 
-              : "Comfortable joggers with streetwear design"}
-          </p>
-        </div>
-
-        {/* Buy Now Button */}
-        <Button 
+        {/* Order Button */}
+        <button 
           onClick={handleOrder}
-          className="w-full btn-neon group-hover:scale-105 transition-transform duration-300"
+          className="w-full btn-cyberpunk text-center font-orbitron"
         >
           Order Now
-        </Button>
+        </button>
       </div>
     </div>
   );
