@@ -70,7 +70,7 @@ const OrderModal = ({ isOpen, onClose, product }: OrderModalProps) => {
         }
       };
 
-      await fetch('https://adityamishra25.app.n8n.cloud/webhook/13f537e7-e5e8-456e-bd0f-762b98032dd4', {
+      await fetch('https://adityamishra69.app.n8n.cloud/webhook-test/73c2883e-4964-41d9-b8ca-e546ce7cfff5', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
